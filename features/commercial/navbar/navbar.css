@@ -1,0 +1,9 @@
+.navbar {
+    height: 5rem;
+}
+
+.access-button {
+    border-radius: 100px 0 0 100px;
+    width: 8rem;
+    height: 3rem;
+}

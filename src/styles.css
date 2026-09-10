@@ -1,3 +1,70 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+/* ========================================
+   KARINA DESIGN
+   ======================================== */
+:root {
+
+  /* ----------------------------------------
+     Brand Colors
+     ---------------------------------------- */
+
+  --karina: #FFA569;
+  --karina-accent: #FF912E;
+
+  --vital: #86F567;
+  --vital-accent: #77FF71;
+
+  --connection: #2D5C81;
+  --connection-accent: #7979FF;
+
+  --alert: #BA334F;
+  --alert-accent: #FF2A1C;
+
+  --linen: #F9FCF2;
+  --ink: #201E21;
+
+
+  /* ----------------------------------------
+     Semantic Colors
+     ---------------------------------------- */
+
+  --color-background: var(--linen);
+  --color-surface: #F0F0EE;
+
+  --color-text: var(--ink);
+  --color-text-muted: #5f5a60;
+
+  --color-primary: var(--karina);
+  --color-primary-accent: var(--karina-accent);
+
+  --color-secondary: var(--connection);
+  --color-secondary-accent: var(--connection-accent);
+
+  --color-success: var(--vital);
+  --color-success-accent: var(--vital-accent);
+
+  --color-alert: var(--alert);
+  --color-alert-accent: var(--alert-accent);
+
+
+  /* ----------------------------------------
+     Radius
+     ---------------------------------------- */
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+
+  /* ----------------------------------------
+     Shadows
+     ---------------------------------------- */
+
+  --shadow-sm: 0 2px 6px rgba(32, 30, 33, 0.8);
+  --shadow-md: 0 4px 12px rgba(32, 30, 33, 0.10);
+}
