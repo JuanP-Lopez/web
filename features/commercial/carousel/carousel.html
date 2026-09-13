@@ -1,0 +1,30 @@
+<section class="carousel-container">
+
+  <div class="carousel-viewport">
+    <div
+      class="carousel-track"
+      [style.transform]="'translateX(-' + (currentSlide() * 100) + '%)'"
+    >
+      @for (slide of slides(); track slide.imageUrl) {
+        <div class="carousel-slide-wrapper">
+          <div
+            class="carousel-slide"
+            [style.background-image]="'url(' + slide.imageUrl + ')'"
+          > 
+            <div class="w-[40%] h-full text">
+                <h2 class="font-bold text-[3rem] text-[var(--karina-accent)]">{{ slide.title }}</h2>
+                <p class="text-[2rem] text-[var(--linen)]">{{ slide.text }}</p>
+
+                <button class="ml-auto flex items-center w-fit h-[3em] p-2 rounded-[var(--radius-sm)] bg-[var(--karina-accent)] font-bold text-[var(--linen)]">
+                  Accede ahora
+                  <svg lucideChevronRight class="m-1 text-[var(--linen)]"></svg>
+                </button>
+
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+</section>

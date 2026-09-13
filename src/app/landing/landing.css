@@ -1,0 +1,17 @@
+.slogan {
+    display: flex;
+    flex-direction: column;
+    width: 40em;
+    padding: 1em;
+    line-height: 1;
+}
+
+.slogan h1 {
+    font-size: 8rem;
+    font-weight: bolder;
+}
+
+.slogan span{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
