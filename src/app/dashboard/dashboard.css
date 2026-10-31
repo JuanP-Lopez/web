@@ -1,0 +1,31 @@
+.wrapper {
+    display: grid;
+    grid-template-areas: 
+     "leftbar chat rightbar";
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: max-content;
+    gap: 1em;
+    margin: 1em;
+}
+
+.leftbar {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    grid-area: leftbar;
+}
+
+.chat {
+    grid-area: chat;
+}
+
+.rightbar {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    grid-area: rightbar;
+}
+
+.leftbar, .chat, .rightbar {
+    border-radius: var(--radius-lg);
+}

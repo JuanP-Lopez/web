@@ -1,0 +1,27 @@
+<div class="flex flex-col bg-[var(--color-surface)] h-full rounded-[var(--radius-md)] 
+shadow-[var(--shadow-md)] justify-between">
+    
+    <div class="chat-header flex border-b-2 border-b-[var(--karina-accent)] w-full items-center justify-between">
+
+        <div class="flex flex-row items-center">
+            <div class="ai-icon flex flex-row m-2 bg-[var(--linen)] border-4 border-[var(--karina-accent)] 
+            rounded-full justify-center items-center">
+                <svg lucideUser class="m-1 text-[var(--ink)] w-full h-full"></svg>
+            </div>
+            <span class="font-bold text-2xl">Chat</span>
+        </div>
+
+        <div class="flex flex-row m-2 items-center">
+            <svg lucideDot class="dot-icon text-[var(--vital)]"></svg>
+            <span class="text-xs">Activo ahora</span>
+        </div>
+
+    </div>
+
+    <div>
+
+        <app-chat-input />
+
+    </div>
+
+</div>

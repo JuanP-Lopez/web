@@ -1,0 +1,76 @@
+<form
+  [formGroup]="signInForm"
+  (ngSubmit)="onSubmit()"
+  class="flex flex-col p-6 rounded-[var(--radius-xl)] bg-[var(--color-surface)] shadow-[var(--shadow-md)]"
+>
+
+  <div class="flex flex-col items-center">
+    <h2 class="font-bold text-6xl tracking-[0.2em] text-[var(--color-text)]">Karina</h2>
+    <span class="text-1xl text-[var(--karina-accent)]">Tu acompañante diario</span>
+  </div>
+
+  <div class="flex flex-col gap-[1em] m-2">
+
+    <div class="relative w-full">
+      <svg
+        lucideMail
+        class="size-5 absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-text)]"
+      ></svg>
+
+      <input
+        type="email"
+        formControlName="email"
+        autocomplete="email"
+        placeholder="Ingresa tu correo electronico"
+        class="w-full outline-none py-3 pl-12 pr-4 bg-[var(--color-background)] rounded-[var(--radius-sm)] border-b-2 border-[var(--karina-accent)] focus:border-[var(--karina-accent)]"
+      />
+    </div>
+
+    @if (signInForm.controls.email.touched && signInForm.controls.email.invalid) {
+      <span class="text-sm text-[var(--color-alert)]">
+          Ingresa un correo electrónico valido
+      </span>
+    }
+  
+    <div class="relative w-full">
+      <svg
+        lucideLock
+        class="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-[var(--color-text)]"
+      ></svg>
+
+      <input
+        type="password"
+        formControlName="password"
+        autocomplete="current-password"
+        placeholder="Ingresa tu contraseña"
+        class="w-full outline-none py-3 pl-12 pr-4 bg-[var(--color-background)] rounded-[var(--radius-sm)] border-b-2 border-[var(--karina-accent)] focus:border-[var(--karina-accent)]"
+      />
+    </div>
+
+    @if (signInForm.controls.password.touched && signInForm.controls.password.invalid) {
+        <span class="text-sm text-[var(--color-alert)]">
+          La contraseña debe tener al menos 8 caracteres.
+        </span>
+      }
+
+    @if (successMessage()) {
+      <p class="text-sm text-[var(--color-success)]">{{successMessage()}}</p>
+    }
+
+    @if (errorMessage()) {
+      <p class="text-sm text-[var(--color-alert)]">{{errorMessage()}}</p>
+    }
+
+    <div class="flex w-full justify-center">
+        <button 
+        type="submit"
+        [disabled]="isSubmitting()"
+        class="w-[30%] border-4 border-[var(--karina-accent)] rounded-[var(--radius-lg)] p-2 
+        text-[var(--karina-accent)] font-bold shadow-[var(--shadow-sm)] 
+        hover:bg-[var(--karina-accent)] hover:text-[var(--linen)] hover:scale-110 transition transform">
+            {{ isSubmitting() ? 'Iniciando sesión' : 'Iniciar sesión' }}
+        </button>
+    </div>
+    
+  </div>
+</form>
