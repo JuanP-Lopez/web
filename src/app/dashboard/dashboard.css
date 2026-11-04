@@ -3,7 +3,6 @@
     grid-template-areas: 
      "leftbar chat rightbar";
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: max-content;
     gap: 1em;
     margin: 1em;
 }
@@ -11,19 +10,24 @@
 .leftbar {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 1em;
     grid-area: leftbar;
+    height: 100%;
 }
 
 .chat {
     grid-area: chat;
+    height: 100%;
 }
 
 .rightbar {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 1em;
     grid-area: rightbar;
+    height: 100%;
 }
 
 .leftbar, .chat, .rightbar {

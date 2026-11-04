@@ -1,7 +1,13 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, signal, OnInit } from "@angular/core";
 
-//AuthStateService
+//Services
 import { AuthStateService } from "../core/services/authstate.service";
+import { UserStatisticsService } from "../core/services/user-statistics.service";
+import { UserPreferencesService } from "../core/services/user-preferences.service";
+
+//Interfaces
+import { UserStatistics } from "../core/models/user-statistics";
+import { userPreferencesRequest } from "../core/models/user-preferences.models";
 
 /* Logic Components */
 import { ThemeToggle } from "../../../features/theme-toggle/theme-toggle";
@@ -35,8 +41,8 @@ import { Chat } from "../../../features/dashboard/chat/chat";
 
             <div class="wrapper">
 
-                <div class="leftbar justify-between">
-                    <app-statistics/>
+                <div class="leftbar">
+                    <app-statistics [statistics]="statistics()"/>
                     <app-automation-menu />
                 </div>
                 
@@ -45,9 +51,9 @@ import { Chat } from "../../../features/dashboard/chat/chat";
                 </div>
 
                 <div class="rightbar">
-                    <app-messages-count />
+                    <app-messages-count [statistics]="statistics()"/>
 
-                    <app-user-preferences />
+                    <app-user-preferences [preferences]="preferences()"/>
                 </div>
 
             </div>
@@ -59,8 +65,40 @@ import { Chat } from "../../../features/dashboard/chat/chat";
 
 export class Dashboard {
 
+    private statisticsService = inject(UserStatisticsService);
+    private prefencesService = inject(UserPreferencesService);
     private authState = inject(AuthStateService);
 
     user = this.authState.user;
+    statistics = signal<UserStatistics | null>(null);
+    preferences = signal<userPreferencesRequest | null>(null);
+    isLoadingPreferences = signal(true);
+
+    loadPreferences () : void {
+        this.prefencesService.getPreferences().subscribe({
+            next : (response) => {
+                this.preferences.set(response);
+                console.log(response);
+                this.isLoadingPreferences.set(false);
+            },
+            error : (error) => {
+                console.error("Error loading prefences: ", error);
+                this.isLoadingPreferences.set(false);
+            }
+        })
+    }
+
+    ngOnInit () : void {
+        this.statisticsService.getUserStatistics().subscribe({
+            next : (data) => {
+                this.statistics.set(data);
+                console.log("User Statistics: ", data);
+            },
+            error : (error) => {
+                console.error("Error retrieving statistics: ", error);
+            }
+        });
+        this.loadPreferences();
+    }
 
  };

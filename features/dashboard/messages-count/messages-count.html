@@ -3,7 +3,14 @@ shadow-[var(--shadow-md)] justify-center items-center">
     <h3 class="font-bold">
         Mensajes Enviados
     </h3>
-    <span class="">
-        #
-    </span>
+
+    @if (statistics(); as stats) {
+        <span class="">
+        {{ stats.total_messages }}
+        </span>
+    } @else {
+        <span class="">
+            0
+        </span>
+    }
 </div>

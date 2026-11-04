@@ -1,32 +1,55 @@
-<div class="flex bg-[var(--color-surface)] h-auto flex-col m-2 p-8 rounded-[var(--radius-md)] 
-shadow-[var(--shadow-md)]">
-    
-    <form action="" class="flex flex-col gap-1">
+<div class="flex bg-[var(--color-surface)] h-auto flex-col m-2 p-6 rounded-[var(--radius-md)] shadow-[var(--shadow-md)]">
 
-        <label for="nickname" class="font-bold">Apodo</label>
-        <input type="text" name="nickname" id="nickname" 
-        class="border-2 border-[var(--karina-accent)] rounded-[var(--radius-md)] h-15
-        flex p-2 focus:border-[var(--karina)] focus:outline-none">
+  <form [formGroup]="preferencesForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-1">
 
-        <label for="tone" class="font-bold">Tono</label>
-        <input type="text" name="tone" id="tone" 
-        class="border-2 border-[var(--karina-accent)] rounded-[var(--radius-md)] h-15
-        flex p-2 focus:border-[var(--karina)] focus:outline-none">
+    <label for="nickname" class="font-bold">Apodo del usuario</label>
+    <input
+      type="text"
+      name="nickname"
+      id="nickname"
+      formControlName="nickname"
+      [placeholder]="'Apodo actual: ' + (preferences()?.nickname || 'Sin configurar')"
+      class="border-2 border-[var(--karina-accent)] rounded-[var(--radius-md)] h-12 flex p-2 focus:border-[var(--karina)] focus:outline-none"
+    />
+    @if (preferencesForm.controls.nickname.touched && preferencesForm.controls.nickname.invalid) {
+      <span class="text-sm text-[var(--color-alert)]">Apodo para ti</span>
+    }
 
-        <label for="language" class="font-bold">Lenguaje</label>
-        <input type="text" name="language" id="language" 
-        class="border-2 border-[var(--karina-accent)] rounded-[var(--radius-md)] h-15
-        flex p-2 focus:border-[var(--karina)] focus:outline-none">
+    <label for="tone" class="font-bold">Tono</label>
+    <input
+      type="text"
+      name="tone"
+      id="tone"
+      formControlName="tone"
+      [placeholder]="'Preferencia actual: ' + (preferences()?.tone || 'Sin configurar')"
+      class="border-2 border-[var(--karina-accent)] rounded-[var(--radius-md)] h-12 flex p-2 focus:border-[var(--karina)] focus:outline-none"
+    />
+    @if (preferencesForm.controls.tone.touched && preferencesForm.controls.tone.invalid) {
+      <span class="text-sm text-[var(--color-alert)]">El tono de la conversación.</span>
+    }
 
-        <div class="flex justify-center">
+    <label for="language" class="font-bold">Personalidad</label>
+    <input
+      type="text"
+      name="language"
+      id="language"
+      formControlName="language"
+      [placeholder]="'Preferencia actual: ' + (preferences()?.language || 'Sin configurar')"
+      class="border-2 border-[var(--karina-accent)] rounded-[var(--radius-md)] h-12 flex p-2 focus:border-[var(--karina)] focus:outline-none"
+    />
+    @if (preferencesForm.controls.language.touched && preferencesForm.controls.language.invalid) {
+      <span class="text-sm text-[var(--color-alert)]">Personalidad del agente.</span>
+    }
 
-            <button class="flex m-4 justify-center p-4 bg-[var(--karina-accent)] font-bold 
-            text-[var(--linen)] rounded-[var(--radius-full)] shadow-[var(--shadow-sm)]">
-                Guardar preferencias
-            </button>
+    <div class="flex justify-center">
+      <button
+        type="submit"
+        [disabled]="isSubmitting()"
+        class="flex m-2 justify-center p-4 bg-[var(--karina-accent)] font-bold text-[var(--linen)] rounded-[var(--radius-full)] shadow-[var(--shadow-sm)] hover:scale-105 transition"
+      >
+        {{ isSubmitting() ? 'Guardando...' : 'Guardar preferencias' }}
+      </button>
+    </div>
 
-        </div>
-
-    </form>
-    
+  </form>
 </div>
