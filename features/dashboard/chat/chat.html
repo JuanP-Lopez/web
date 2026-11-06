@@ -1,27 +1,49 @@
-<div class="flex flex-col bg-[var(--color-surface)] h-full rounded-[var(--radius-md)] 
-shadow-[var(--shadow-md)] justify-between">
-    
-    <div class="chat-header flex border-b-2 border-b-[var(--karina-accent)] w-full items-center justify-between">
-
-        <div class="flex flex-row items-center">
-            <div class="ai-icon flex flex-row m-2 bg-[var(--linen)] border-4 border-[var(--karina-accent)] 
-            rounded-full justify-center items-center">
-                <svg lucideUser class="m-1 text-[var(--ink)] w-full h-full"></svg>
-            </div>
-            <span class="font-bold text-2xl">Chat</span>
-        </div>
-
-        <div class="flex flex-row m-2 items-center">
-            <svg lucideDot class="dot-icon text-[var(--vital)]"></svg>
-            <span class="text-xs">Activo ahora</span>
-        </div>
-
+<div
+  class="flex flex-col bg-[var(--color-surface)] h-full rounded-[var(--radius-md)] shadow-[var(--shadow-md)] justify-between"
+>
+  <div
+    class="chat-header flex border-b-2 border-b-[var(--karina-accent)] w-full items-center justify-between"
+  >
+    <div class="flex flex-row items-center">
+      <div
+        class="ai-icon flex flex-row m-2 bg-[var(--linen)] border-4 border-[var(--karina-accent)] rounded-full justify-center items-center"
+      >
+        <svg lucideUser class="m-1 text-[var(--ink)] w-full h-full"></svg>
+      </div>
+      <span class="font-bold text-2xl">Chat</span>
     </div>
 
-    <div>
-
-        <app-chat-input />
-
+    <div class="flex flex-row m-2 items-center">
+      <svg lucideDot class="dot-icon text-[var(--vital)]"></svg>
+      <span class="text-xs">Activo ahora</span>
     </div>
+  </div>
 
+  <div class="flex-1 min-h-0 overflow-y-auto p-3">
+    @if (messages().length === 0) {
+      <div class="flex flex-col h-full items-center justify-center text-center gap-2">
+        <span class="font-bold text-xl">¡Hola!</span>
+        <p class="text-sm text-[var(--ink)]">Comienza una conversación con Karina.</p>
+      </div>
+    }
+
+    @for (message of messages(); track message.id) {
+      @if (message.role === 'user') {
+        <app-user-message [content]="message.content" />
+      } @else {
+        <app-agent-response [content]="message.content" />
+      }
+    }
+  </div>
+
+  <div>
+    <app-chat-input (sendMessage)="onSendMessage($event);" />
+  </div>
+  <button
+  type="button"
+  (click)="onSendMessage('Mensaje de prueba')"
+  class="p-2 bg-orange-500 text-white"
+>
+  Probar Chat
+</button>
 </div>
